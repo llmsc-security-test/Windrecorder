@@ -1,3 +1,49 @@
+[project]
+name = "windrecorder"
+version = "0.0.31"
+description = "Windrecorder is a memory search app by records everything on your screen in small size, to let you rewind what you have seen, query through OCR text or image description, and get activity statistics. Developed as MacOS App Rewind.ai / Copilot Recall alternative tool on Windows platform."
+readme = "README.md"
+license = { text = "GPL-2.0" }
+authors = [ { name = "yuka-friends" } ]
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "jieba>=0.42.1,<1.0.0",
+    "matplotlib>=3.7.1,<4.0.0",
+    "numpy>=1.24.2,<2.0.0",
+    "onnxruntime>=1.15.1,<1.16.0",
+    "opencv-python>=4.5.5.64,<4.6.0",
+    "pandas>=2.0.3,<3.0.0",
+    "pyclipper>=1.3.0.post4,<1.4.0",
+    "pywin32>=306,<307",
+    "Send2Trash>=1.8.2,<2.0.0",
+    "Shapely>=2.0.1,<2.1.0",
+    "streamlit>=1.29.0,<2.0.0",
+    "pillow>=10.1.0,<11.0.0",
+    "wordcloud>=1.9.2,<2.0.0",
+    "pystray>=0.19.5,<0.20.0",
+    "customtkinter>=5.2.1,<6.0.0",
+    "psutil>=5.9.5,<6.0.0",
+    "scikit-image>=0.22.0,<0.23.0",
+    "faiss-cpu>=1.7.4,<2.0.0",
+    "tqdm>=4.65.0,<5.0.0",
+    "streamlit-tags>=1.2.8,<2.0.0",
+    "mss>=9.0.1,<10.0.0",
+    "pygetwindow>=0.0.9,<0.1.0",
+    "uiautomation>=2.0.20,<3.0.0",
+    "openai>=1.40.8,<2.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.5.0,<4.0.0",
+    "ipykernel>=6.29.2,<7.0.0"
+]
+
+[build-system]
+requires = ["hatchling>=1.18.0"]
+build-backend = "hatchling.build"
+
+# Keep Poetry metadata for backward compatibility during migration.
 [tool.poetry]
 name = "windrecorder"
 version = "0.0.31"
@@ -51,7 +97,3 @@ priority = "supplemental"
 name = "aliyun"
 url = "https://mirrors.aliyun.com/pypi/simple"
 priority = "supplemental"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

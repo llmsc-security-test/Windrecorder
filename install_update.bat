@@ -38,20 +38,27 @@ if defined HOST_PY (
     if "%HOST_PY%"=="3.11" set "TARGET_PY=%HOST_PY%"
 )
 
+set "UV_OK="
 echo -uv: preparing Python %TARGET_PY% interpreter (if needed)
 "%UV_EXE%" python install %TARGET_PY% >nul 2>nul
 
 echo -uv: syncing dependencies into .venv
-"%UV_EXE%" sync --in-project --python %TARGET_PY%
+"%UV_EXE%" sync --project . --python %TARGET_PY% 
 if errorlevel 1 (
-    echo   uv sync failed. Trying legacy Poetry as fallback...
-    python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple poetry
-    python -m poetry config virtualenvs.in-project true
-    python -m poetry install
+    echo   uv sync failed. Aborting to avoid Poetry overriding uv environment.
+    echo   Please review the uv error above and fix dependency constraints in pyproject.toml.
+    pause
+    exit /b 1
+) else (
+    set "UV_OK=1"
 )
 
 color 0e
 title Windrecorder - Quick Setup
-"%UV_EXE%" run python "%~dp0\onboard_setting.py"
+if defined UV_OK (
+    "%UV_EXE%" run python "%~dp0\onboard_setting.py"
+) else (
+    python -m poetry run python "%~dp0\onboard_setting.py"
+)
 
 pause
