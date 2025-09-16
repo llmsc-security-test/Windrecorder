@@ -22,6 +22,20 @@ start mshta vbscript:createobject("wscript.shell").run("%~nx0"^&" h",0)^&(window
 
 :begin
 cd /d %~dp0
-for /F "tokens=* USEBACKQ" %%A in (`python -m poetry env info --path`) do call "%%A\Scripts\activate.bat"
+set "UV_EXE="
+for /f "delims=" %%i in ('where uv 2^>nul') do set "UV_EXE=%%i"
+if defined UV_EXE (
+    "%UV_EXE%" run python "%~dp0\main.py"
+    goto end
+)
 
+if exist "%~dp0\.venv\Scripts\activate.bat" (
+    call "%~dp0\.venv\Scripts\activate.bat"
+    python "%~dp0\main.py"
+    goto end
+)
+
+for /F "tokens=* USEBACKQ" %%A in (`python -m poetry env info --path 2^>nul`) do call "%%A\Scripts\activate.bat"
 python "%~dp0\main.py"
+
+:end
