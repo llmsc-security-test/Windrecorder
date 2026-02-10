@@ -159,3 +159,21 @@ Feel free to supplement, and hope you find the tool that suits you:
 For more research and discussion on HackerNews:
 - https://news.ycombinator.com/item?id=38787892
 - https://news.ycombinator.com/item?id=40105371
+
+
+
+
+
+---
+
+## Docker Deployment
+
+This repository has been Dockerized for easy deployment.
+
+- **Official Repository**: [yuka-friends/Windrecorder](https://github.com/yuka-friends/Windrecorder)
+- **Dockerized by**: [llmsc-security](https://github.com/llmsc-security)
+- **Docker Image**: `yuka-friends--Windrecorder_image`
+- **Container**: `yuka-friends--Windrecorder_container`
+- **HTTP Service**: `http://127.0.0.1:11480`
+
+For Docker deployment and port mapping details, please visit our [Docker Directory](https://github.com/llmsc-security/docker-yuelin).
